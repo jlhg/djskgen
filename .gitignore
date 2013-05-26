@@ -1,0 +1,30 @@
+# Python bytecode:
+*.py[co]
+
+# Packaging files:
+*.egg*
+
+# Editor temp files:
+*.swp
+*~
+
+# Sphinx docs:
+build
+
+# SQLite3 database files:
+*.db
+
+# Logs:
+*.log
+
+# Setting files
+*/settings/production.py
+
+# Emacs buffer files:
+*#*#
+
+# Emacs backup files:
+*~
+
+# Rope project
+.ropeproject

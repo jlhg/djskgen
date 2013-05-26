@@ -1,0 +1,18 @@
+{% extends "djskgen/base.html" %}
+
+{% block content %}
+  <h1>Django Secret Key Generator</h1>
+  <form action="/" method="post">{% csrf_token %}
+    <input type="submit", name="keygen", value="Generate keys">
+  </form>
+
+  {% if secret_keys %}
+    <table>
+    {% for id, secret_key in secret_keys.items %}
+      <tr>
+        <td><input type="text" id="id" size="50" maxlength="50" style="font-family: Droid Sans Mono, sans-serif" value="{{ secret_key }}"></td>
+      </tr>
+    {% endfor %}
+    </table>
+  {% endif %}
+{% endblock content %}
