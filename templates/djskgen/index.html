@@ -3,7 +3,7 @@
 {% block content %}
   <h1>Django Secret Key Generator</h1>
   <form action="/" method="post">{% csrf_token %}
-    <input type="submit", name="keygen", value="Generate keys">
+    <input type="submit" name="keygen" value="Generate keys">
   </form>
 
   {% if secret_keys %}
