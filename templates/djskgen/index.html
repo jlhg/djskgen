@@ -10,7 +10,7 @@
     <table>
     {% for id, secret_key in secret_keys.items %}
       <tr>
-        <td><input type="text" id="id" size="50" maxlength="50" style="font-family: Droid Sans Mono, sans-serif" value="{{ secret_key }}"></td>
+        <td><input type="text" id="{{ id }}" size="50" maxlength="50" style="font-family: Droid Sans Mono, sans-serif" value="{{ secret_key }}"></td>
       </tr>
     {% endfor %}
     </table>
