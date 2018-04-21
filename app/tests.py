@@ -31,3 +31,17 @@ class TestView(SimpleTestCase):
         response = index(request)
 
         self.assertIn('table', response.content)
+
+    def test_main_view_returns_method_not_allowed_for_put(self):
+        request = RequestFactory().put('/')
+
+        response = index(request)
+
+        self.assertEqual(response.status_code, 405)
+
+    def test_main_view_returns_method_not_allowed_for_delete(self):
+        request = RequestFactory().delete('/')
+
+        response = index(request)
+
+        self.assertEqual(response.status_code, 405)
