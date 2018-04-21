@@ -1,12 +1,12 @@
 application: djskgen
 version: 1
-runtime: python27
+runtime: python36
 api_version: 1
 threadsafe: true
 
 libraries:
 - name: django
-  version: "1.5.1"
+  version: "2.0.4"
 
 builtins:
 - django_wsgi: on
