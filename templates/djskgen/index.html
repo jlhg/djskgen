@@ -1,18 +1,40 @@
-{% extends "djskgen/base.html" %}
+<!DOCTYPE html>
+<meta charset="utf-8">
 
-{% block content %}
-  <h1>Django Secret Key Generator</h1>
-  <form action="/" method="post">{% csrf_token %}
-    <input type="submit" name="keygen" value="Generate keys">
-  </form>
+{% load staticfiles %}
 
-  {% if secret_keys %}
-    <table>
+<head>
+  <link href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet" type="text/css">
+  <title>
+    {% block title %}
+      Django secret key generator
+    {% endblock title %}
+  </title>
+</head>
+
+<body>
+
+<h1>Django Secret Key Generator</h1>
+
+<form action="/" method="post">
+  {% csrf_token %}
+  <input type="submit" value="Generate keys">
+</form>
+
+{% if secret_keys %}
+  <ul style="padding-left: 0">
     {% for id, secret_key in secret_keys.items %}
-      <tr>
-        <td><input type="text" id="{{ id }}" size="50" maxlength="50" style="font-family: Droid Sans Mono, sans-serif" value="{{ secret_key }}"></td>
-      </tr>
+      <li style="list-style: none">
+        <label>
+          <input type="text" size="50" style="font-family: Droid Sans Mono, sans-serif" value="{{ secret_key }}">
+        </label>
+      </li>
     {% endfor %}
-    </table>
-  {% endif %}
-{% endblock content %}
+  </ul>
+{% endif %}
+
+{% block footer %}
+  <p><a href="https://github.com/jlhg/djskgen" target="_blank">Source Code on GitHub</a></p>
+{% endblock footer %}
+
+</body>
