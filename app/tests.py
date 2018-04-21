@@ -16,7 +16,7 @@ class TestView(SimpleTestCase):
 
         response = index(request)
 
-        self.assertNotIn('table', response.content)
+        self.assertNotIn('</ul>', response.content.decode())
 
     def test_main_view_returns_ok_status_on_post(self):
         request = RequestFactory().post('/')
@@ -30,7 +30,7 @@ class TestView(SimpleTestCase):
 
         response = index(request)
 
-        self.assertIn('table', response.content)
+        self.assertIn('</ul>', response.content.decode())
 
     def test_main_view_returns_method_not_allowed_for_put(self):
         request = RequestFactory().put('/')
