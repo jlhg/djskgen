@@ -24,4 +24,4 @@ def index(request):
     if method == 'POST':
         context['secret_keys'] = _generate_secret_keys()
 
-    return render(request, 'djskgen/index.html', context)
+    return render(request, 'index.html', context)
