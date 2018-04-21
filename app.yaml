@@ -6,7 +6,7 @@ threadsafe: true
 
 libraries:
 - name: django
-  version: "1.4"
+  version: "1.5.1"
 
 builtins:
 - django_wsgi: on
@@ -16,4 +16,4 @@ handlers:
   static_dir: static
 
 env_variables:
-  DJANGO_SETTINGS_MODULE: 'dj_skgen.settings.production'
+  DJANGO_SETTINGS_MODULE: 'core.settings'

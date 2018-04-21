@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, url
-from djskgen.views import keygen
+
+from app.views import index
 
 urlpatterns = patterns('',
-                       url(r'^$', keygen.index, name='index'),
+                       url(r'^$', index, name='index'),
                        )

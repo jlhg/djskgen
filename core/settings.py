@@ -1,13 +1,11 @@
-from os import path as os_path
+import os
 from sys import path
 
-DJANGO_ROOT = os_path.dirname(os_path.dirname(os_path.abspath(__file__)))
+DJANGO_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-SITE_ROOT = os_path.dirname(DJANGO_ROOT)
+SITE_ROOT = os.path.dirname(DJANGO_ROOT)
 
-SITE_NAME = os_path.basename(DJANGO_ROOT)
-
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 path.append(DJANGO_ROOT)
 
@@ -38,13 +36,11 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-MEDIA_ROOT = os_path.normpath(os_path.join(SITE_ROOT, 'media'))
-MEDIA_URL = '/media/'
 STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os_path.normpath(os_path.join(SITE_ROOT, 'static')),
+    os.path.normpath(os.path.join(SITE_ROOT, 'static')),
 )
 
 STATICFILES_FINDERS = (
@@ -53,10 +49,6 @@ STATICFILES_FINDERS = (
 )
 
 SECRET_KEY = r"kc_24q58sez2!wqf_@=t)cc&ettfs&=jn8st@y9m_v0&n#+qku"
-
-FIXTURE_DIRS = (
-    os_path.normpath(os_path.join(SITE_ROOT, 'fixtures')),
-)
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -71,16 +63,17 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = '%s.urls' % SITE_NAME
+ROOT_URLCONF = 'core.urls'
 
-WSGI_APPLICATION = 'wsgi.application'
+WSGI_APPLICATION = 'core.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os_path.normpath(os_path.join(SITE_ROOT, 'templates')),
+    os.path.normpath(os.path.join(SITE_ROOT, 'templates')),
 )
 
 INSTALLED_APPS = (
     'django.contrib.staticfiles',
+    'app',
 )
 
 LOGGING = {
