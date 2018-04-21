@@ -15,7 +15,7 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': '',
         'USER': '',
         'PASSWORD': '',
@@ -73,6 +73,7 @@ TEMPLATE_DIRS = (
 
 INSTALLED_APPS = (
     'django.contrib.staticfiles',
+    'core',
     'app',
 )
 
