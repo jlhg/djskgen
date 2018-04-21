@@ -28,3 +28,9 @@ build
 
 # Rope project
 .ropeproject
+
+# JetBrains project settings
+.idea/
+
+# Local environment
+[v]env/
