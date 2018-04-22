@@ -26,6 +26,10 @@ build
 # Emacs backup files:
 *~
 
+# Static and media files
+static/
+media/
+
 # Rope project
 .ropeproject
 

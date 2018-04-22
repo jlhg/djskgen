@@ -13,10 +13,11 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
+    'core',
     'app',
 ]
 
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
+INSTALLED_APPS = LOCAL_APPS + DJANGO_APPS
 
 ALLOWED_HOSTS = []
 
@@ -28,8 +29,11 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+STATICFILES_DIRS = [
+    os.path.join(PROJECT_ROOT, 'assets'),
+]
 
 MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
