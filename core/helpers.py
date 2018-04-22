@@ -25,3 +25,10 @@ def generate_secret_key():
     system_random = SystemRandom()
     allowed_chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
     return ''.join([system_random.choice(allowed_chars) for _ in range(50)])
+
+
+def set_secret_key_env(env_path: str) -> None:
+    with open(env_path, 'ab') as env:
+        secret_key = generate_secret_key()
+        os.environ.setdefault('SECRET_KEY', secret_key)
+        env.write(b'SECRET_KEY=' + secret_key.encode())

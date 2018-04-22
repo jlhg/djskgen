@@ -1,10 +1,11 @@
 import os
 
-from core.helpers import DotEnvReader, generate_secret_key
+from core.helpers import DotEnvReader, set_secret_key_env
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DOT_ENV_PATH = os.path.join(PROJECT_ROOT, '.env')
 
-DotEnvReader(os.path.join(PROJECT_ROOT, '.env')).read()
+DotEnvReader(DOT_ENV_PATH).read()
 
 PRODUCTION = bool(int(os.getenv('PRODUCTION', 0)))
 DEBUG = bool(int(os.getenv('DEBUG', 0 if PRODUCTION else 1)))
@@ -13,8 +14,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # If in production and SECRET_KEY is not set, let it fail
 if not SECRET_KEY and PRODUCTION:
-    with open('.env', 'wb') as env:
-        env.write(('SECRET_KEY=' + generate_secret_key()).encode())
+    set_secret_key_env(DOT_ENV_PATH)
 
 DJANGO_APPS = [
     'django.contrib.auth',
