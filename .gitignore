@@ -1,41 +1,10 @@
-# Python bytecode:
-*.py[co]
-
-# Packaging files:
+# Files
 *.egg*
-
-# Editor temp files:
-*.swp
-*~
-
-# Sphinx docs:
-build
-
-# SQLite3 database files:
-*.db
-
-# Logs:
-*.log
-
-# Setting files
-*/settings/production.py
-
-# Emacs buffer files:
-*#*#
-
-# Emacs backup files:
-*~
-
-# Static and media files
-static/
-media/
-
-# Rope project
-.ropeproject
-
-# JetBrains project settings
-.idea/
-
-# Local environment
 .env
+*.py[cod]
+
+# Directories
+.idea/
+media/
+static/
 [v]env/
