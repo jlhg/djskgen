@@ -1,10 +1,20 @@
 import os
 
+from core.helpers import DotEnvReader, generate_secret_key
+
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = r"kc_24q58sez2!wqf_@=t)cc&ettfs&=jn8st@y9m_v0&n#+qku"
+DotEnvReader(os.path.join(PROJECT_ROOT, '.env')).read()
 
-DEBUG = True
+PRODUCTION = bool(int(os.getenv('PRODUCTION', 0)))
+DEBUG = bool(int(os.getenv('DEBUG', 0 if PRODUCTION else 1)))
+
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+# If in production and SECRET_KEY is not set, let it fail
+if not SECRET_KEY and PRODUCTION:
+    with open('.env', 'wb') as env:
+        env.write(('SECRET_KEY=' + generate_secret_key()).encode())
 
 DJANGO_APPS = [
     'django.contrib.auth',
@@ -18,15 +28,15 @@ LOCAL_APPS = [
 
 INSTALLED_APPS = LOCAL_APPS + DJANGO_APPS
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*' if not PRODUCTION else '').split(',')
 
-TIME_ZONE = 'Asia/Taipei'
+TIME_ZONE = 'UTC'
 
 LANGUAGE_CODE = 'en-us'
 
 USE_I18N = True
 USE_L10N = True
-USE_TZ = True
+USE_TZ = False
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')

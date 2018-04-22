@@ -37,4 +37,5 @@ media/
 .idea/
 
 # Local environment
+.env
 [v]env/
