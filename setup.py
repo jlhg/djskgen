@@ -14,11 +14,6 @@ except FileNotFoundError:
     # this file probably won't be there
     long_description = ''
 
-requirements = [
-    'Django==2.0.4',
-    'gunicorn==19.7.1',
-]
-
 
 setup(
     name='Django Secret Key Generator',
@@ -26,7 +21,10 @@ setup(
     long_description=long_description,
     classifiers=[],
     packages=find_packages(),
-    install_requires=requirements,
+    install_requires=[
+        'Django==2.0.4',
+        'gunicorn==19.7.1',
+    ],
     extras_require={
         'test': ['coverage'],
     },
