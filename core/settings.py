@@ -79,3 +79,5 @@ DATABASES = {
         'NAME': ':memory:',
     }
 }
+
+GOOGLE_ANALYTICS_ID = os.getenv('GOOGLE_ANALYTICS_ID')

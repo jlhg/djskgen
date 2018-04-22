@@ -4,9 +4,7 @@
 {% load staticfiles %}
 
 <head>
-  <title>
-    Django secret key generator
-  </title>
+  <title>Django secret key generator</title>
   <style>
     body {
       display: flex;
@@ -19,9 +17,11 @@
       margin-top: 1em;
     }
   </style>
+  {% if GOOGLE_ANALYTICS_ID %}
+    <script src="/static/googleAnalytics.js?id={{ GOOGLE_ANALYTICS_ID }}"></script>
+  {% endif %}
   <script src="/static/index.js"></script>
 </head>
-
 <body>
 
 <h1>Django Secret Key Generator</h1>
