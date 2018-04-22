@@ -16,10 +16,8 @@ except FileNotFoundError:
 
 requirements = [
     'Django==2.0.4',
+    'gunicorn==19.7.1',
 ]
-
-if bool(int(os.getenv('PRODUCTION', 0))):
-    requirements += ['gunicorn']
 
 
 setup(
