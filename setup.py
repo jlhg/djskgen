@@ -29,7 +29,7 @@ setup(
     classifiers=[],
     packages=find_packages(),
     install_requires=requirements,
-    extra_requires={
+    extras_require={
         'test': ['coverage'],
     },
 )
