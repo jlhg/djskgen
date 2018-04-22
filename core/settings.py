@@ -22,11 +22,15 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
+THIRD_PARTY_APPS = [
+    'rest_framework',
+]
+
 LOCAL_APPS = [
     'app',
 ]
 
-INSTALLED_APPS = LOCAL_APPS + DJANGO_APPS
+INSTALLED_APPS = LOCAL_APPS + THIRD_PARTY_APPS + DJANGO_APPS
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*' if not PRODUCTION else '').split(',')
 

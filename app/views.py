@@ -1,17 +1,17 @@
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.views.generic import TemplateView
+from rest_framework.response import Response
+from rest_framework.viewsets import GenericViewSet, mixins
 
 from core.helpers import generate_secret_key
 
 
-def index(request):
-    method = request.method.upper()
+class IndexView(TemplateView):
+    template_name = 'index.html'
 
-    if method not in ['GET', 'POST']:
-        return HttpResponse(status=405)
 
-    if method == 'POST':
-        secret_keys = [generate_secret_key() for _ in range(1, 21)]
-        return JsonResponse(secret_keys, safe=False)
+class SecretKeysView(GenericViewSet, mixins.ListModelMixin):
+    def get_queryset(self):
+        pass
 
-    return render(request, 'index.html')
+    def list(self, request, *args, **kwargs):
+        return Response([generate_secret_key() for _ in range(20)])
