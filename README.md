@@ -1,6 +1,3 @@
 ## Django Secret Key Generator
 
-Hosted on:
-
-* https://djskgen.appspot.com/
-* https://djskgen.herokuapp.com/
+Live on [https://djskgen.herokuapp.com/](https://djskgen.herokuapp.com/).

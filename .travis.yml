@@ -1,0 +1,21 @@
+language: python
+
+python:
+  - "3.6"
+
+install: "pip install -r requirements.txt coverage"
+
+env:
+  global:
+    - SECRET_KEY="u@)7349fg!_dzzk^ok(!jyf7hb7jpagnkdpy$zjniz3=2=7snh"
+  matrix:
+    - DEBUG=0 PRODUCTION=0
+    - DEBUG=0 PRODUCTION=1
+    - DEBUG=1 PRODUCTION=1
+    - DEBUG=1 PRODUCTION=0
+
+script:
+  - coverage run manage.py test
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

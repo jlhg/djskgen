@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+{% load staticfiles %}
+
+<head>
+  <link href="//fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet" type="text/css">
+  <title>
+    Django secret key generator
+  </title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .secret-keys {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1em;
+    }
+  </style>
+
+  <script src="//cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script src="/static/index.js"></script>
+</head>
+
+<body>
+
+<h1>Django Secret Key Generator</h1>
+
+<input type="button" onclick="generateSecretKeys()" value="Generate keys">
+
+<div class="secret-keys"></div>
+
+<p>
+  <a href="https://github.com/jlhg/djskgen" target="_blank">Source Code on GitHub</a>
+</p>
+
+</body>

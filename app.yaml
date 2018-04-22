@@ -1,12 +1,12 @@
 application: djskgen
 version: 1
-runtime: python27
+runtime: python36
 api_version: 1
 threadsafe: true
 
 libraries:
 - name: django
-  version: "1.4"
+  version: "2.0.4"
 
 builtins:
 - django_wsgi: on
@@ -16,4 +16,4 @@ handlers:
   static_dir: static
 
 env_variables:
-  DJANGO_SETTINGS_MODULE: 'dj_skgen.settings.production'
+  DJANGO_SETTINGS_MODULE: 'core.settings'
