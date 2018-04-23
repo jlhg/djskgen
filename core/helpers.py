@@ -7,11 +7,11 @@ class DotEnvReader:
     def __init__(self, path: str):
         self.path = path
 
-    def read(self) -> None:
+    def read(self) -> None:  # pragma: no cover
         try:
             with open(self.path) as f:
                 content = f.read()
-        except IOError:  # pragma: no cover
+        except IOError:
             pass
         else:
             for line in content.splitlines():
