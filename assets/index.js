@@ -26,12 +26,9 @@ var generateSecretKeys = (function () {
   }
 
   function _getSecretKeysRequest(listener) {
-    var csrfToken = Cookies.get('csrftoken');
-
     var xhr = new XMLHttpRequest();
     xhr.onload = listener;
-    xhr.open('post', '/', true);
-    xhr.setRequestHeader('X-CSRFToken', csrfToken);
+    xhr.open('get', '/api/secret_keys/', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send();
   }

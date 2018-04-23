@@ -1,60 +1,36 @@
-import json
-
 from django.test import SimpleTestCase, RequestFactory
 
-from app.views import index
+from app.views import IndexView, SecretKeysView
 
 
-class TestView(SimpleTestCase):
+class TestIndexView(SimpleTestCase):
     def test_main_view_returns_ok_status_on_get(self):
         request = RequestFactory().get('/')
 
-        response = index(request)
+        response = IndexView(request=request).get(request)
 
         self.assertEqual(response.status_code, 200)
 
-    def test_main_view_returns_ok_status_on_post(self):
-        request = RequestFactory().post('/')
 
-        response = index(request)
-
-        self.assertEqual(response.status_code, 200)
-
+class TestSecretKeysView(SimpleTestCase):
     def test_main_view_returns_json_list_on_post(self):
         request = RequestFactory().post('/')
 
-        response = index(request)
+        response = SecretKeysView().list(request)
 
-        secret_keys = json.loads(response.content.decode())
-        self.assertIsInstance(secret_keys, list)
+        self.assertIsInstance(response.data, list)
 
     def test_main_view_returns_twenty_items_on_post(self):
         request = RequestFactory().post('/')
 
-        response = index(request)
+        response = SecretKeysView().list(request)
 
-        secret_keys = json.loads(response.content.decode())
-        self.assertEqual(len(secret_keys), 20)
+        self.assertEqual(len(response.data), 20)
 
-    def test_main_view_returns_json_list_of_dicts_on_post(self):
+    def test_main_view_returns_json_list_of_strings_on_post(self):
         request = RequestFactory().post('/')
 
-        response = index(request)
+        response = SecretKeysView().list(request)
 
-        secret_keys = json.loads(response.content.decode())
-        for secret_key in secret_keys:
+        for secret_key in response.data:
             self.assertIsInstance(secret_key, str)
-
-    def test_main_view_returns_method_not_allowed_for_put(self):
-        request = RequestFactory().put('/')
-
-        response = index(request)
-
-        self.assertEqual(response.status_code, 405)
-
-    def test_main_view_returns_method_not_allowed_for_delete(self):
-        request = RequestFactory().delete('/')
-
-        response = index(request)
-
-        self.assertEqual(response.status_code, 405)

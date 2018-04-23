@@ -1,17 +1,23 @@
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.conf import settings
+from django.views.generic import TemplateView
+from rest_framework.response import Response
+from rest_framework.viewsets import GenericViewSet, mixins
 
 from core.helpers import generate_secret_key
 
 
-def index(request):
-    method = request.method.upper()
+class IndexView(TemplateView):
+    template_name = 'index.html'
 
-    if method not in ['GET', 'POST']:
-        return HttpResponse(status=405)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['GOOGLE_ANALYTICS_ID'] = settings.GOOGLE_ANALYTICS_ID
+        return context
 
-    if method == 'POST':
-        secret_keys = [generate_secret_key() for _ in range(1, 21)]
-        return JsonResponse(secret_keys, safe=False)
 
-    return render(request, 'index.html')
+class SecretKeysView(GenericViewSet, mixins.ListModelMixin):
+    def get_queryset(self):
+        pass  # pragma: no cover
+
+    def list(self, request, *args, **kwargs):
+        return Response([generate_secret_key() for _ in range(20)])

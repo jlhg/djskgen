@@ -1,4 +1,5 @@
 import os
+import sys
 
 from core.helpers import DotEnvReader, set_secret_key_env
 
@@ -7,6 +8,8 @@ DOT_ENV_PATH = os.path.join(PROJECT_ROOT, '.env')
 
 DotEnvReader(DOT_ENV_PATH).read()
 
+TEST = 'test' in sys.argv
+
 PRODUCTION = bool(int(os.getenv('PRODUCTION', 0)))
 DEBUG = bool(int(os.getenv('DEBUG', 0 if PRODUCTION else 1)))
 
@@ -14,7 +17,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # If in production and SECRET_KEY is not set, let it fail
 if not SECRET_KEY and PRODUCTION:
-    set_secret_key_env(DOT_ENV_PATH)
+    set_secret_key_env(DOT_ENV_PATH)  # pragma: no cover
 
 DJANGO_APPS = [
     'django.contrib.auth',
@@ -22,11 +25,15 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
+THIRD_PARTY_APPS = [
+    'rest_framework',
+]
+
 LOCAL_APPS = [
     'app',
 ]
 
-INSTALLED_APPS = LOCAL_APPS + DJANGO_APPS
+INSTALLED_APPS = LOCAL_APPS + THIRD_PARTY_APPS + DJANGO_APPS
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*' if not PRODUCTION else '').split(',')
 
@@ -75,3 +82,5 @@ DATABASES = {
         'NAME': ':memory:',
     }
 }
+
+GOOGLE_ANALYTICS_ID = os.getenv('GOOGLE_ANALYTICS_ID')
