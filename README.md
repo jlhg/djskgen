@@ -4,9 +4,9 @@
 
 [![Build Status][travis_badge]][travis_link]
 [![codecov][codecov_badge]][codecov_link]
-</div>
 
 Live on [https://djskgen.herokuapp.com/](https://djskgen.herokuapp.com/).
+</div>
 
 [travis_badge]: https://travis-ci.org/jlhg/djskgen.svg?branch=master
 [travis_link]: https://travis-ci.org/jlhg/djskgen
