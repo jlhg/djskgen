@@ -1,6 +1,6 @@
 'use strict';
 
-var generateSecretKeys = (function () {
+window.generateSecretKeys = (function () {
   return function _generateSecretKeys() {
     _getSecretKeysRequest(_listener);
   };

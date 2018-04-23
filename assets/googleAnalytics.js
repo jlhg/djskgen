@@ -1,17 +1,19 @@
 'use strict';
 
-var gtag = (function () {
+window.gtag = (function () {
   var gaId = _getParams('googleAnalytics')['id'];
   _loadGoogleAnalytics(gaId);
 
-  window.dataLayer = window.dataLayer || [
-    ['js', new Date()],
-    ['config', gaId],
-  ];
+  window.dataLayer = window.dataLayer || [];
 
-  return function _gtag() {
+  function _gtag() {
     dataLayer.push(arguments);
-  };
+  }
+
+  _gtag('js', new Date());
+  _gtag('config', 'UA-117997315-1');
+
+  return _gtag;
 
   function _loadGoogleAnalytics(googleAnalyticsId) {
     var script = document.createElement('script');
@@ -20,7 +22,7 @@ var gtag = (function () {
   }
 
   function _getParams(script_name) {
-    var scripts = document.getElementsByTagName("script");
+    var scripts = document.getElementsByTagName('script');
 
     for (var i = 0; i < scripts.length; i++) {
       var regexp = new RegExp('/' + script_name + '.js');
