@@ -1,0 +1,14 @@
+[report]
+exclude_lines =
+  pragma: no cover
+  def __unicode__
+  def __repr__
+  def __str__
+  AssertionError
+  NotImplementedError
+
+omit =
+  manage.py
+  app/*/migrations/*
+
+show_missing = True

@@ -11,7 +11,7 @@ class DotEnvReader:
         try:
             with open(self.path) as f:
                 content = f.read()
-        except IOError:
+        except IOError:  # pragma: no cover
             pass
         else:
             for line in content.splitlines():
@@ -28,7 +28,7 @@ def generate_secret_key():
 
 
 def set_secret_key_env(env_path: str) -> None:
-    with open(env_path, 'ab') as env:
+    with open(env_path, 'ab') as env:  # pragma: no cover
         secret_key = generate_secret_key()
         os.environ.setdefault('SECRET_KEY', secret_key)
         env.write(b'SECRET_KEY=' + secret_key.encode())
