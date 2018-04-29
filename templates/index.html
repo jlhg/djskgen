@@ -22,11 +22,11 @@
   {% endif %}
   <script src="/static/index.js"></script>
 </head>
-<body>
+<body onload="generateSecretKeys()">
 
 <h1>Django Secret Key Generator</h1>
 
-<input type="button" onclick="generateSecretKeys()" value="Generate keys">
+<input type="button" onclick="generateSecretKeys()" value="Refresh keys">
 
 <div class="secret-keys"></div>
 
