@@ -11,7 +11,10 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['GOOGLE_ANALYTICS_ID'] = settings.GOOGLE_ANALYTICS_ID
+
+        analytics = bool(int(self.request.GET.get('analytics', 1)))
+        if analytics:
+            context['GOOGLE_ANALYTICS_ID'] = settings.GOOGLE_ANALYTICS_ID
         return context
 
 
