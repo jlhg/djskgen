@@ -11,7 +11,7 @@ window.gtag = (function () {
   }
 
   _gtag('js', new Date());
-  _gtag('config', 'UA-117997315-1');
+  _gtag('config', gaId);
 
   return _gtag;
 

@@ -16,6 +16,6 @@ class TestIndexAPI(APITestCase):
 
 class TestSecretKeysViewAPI(APITestCase):
     def test_that_it_responds_with_ok_status(self):
-        response = self.client.get('/api/secret_keys/')
+        response = self.client.get('/api/secret_key/')
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)

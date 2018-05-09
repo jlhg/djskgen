@@ -3,7 +3,7 @@ from unittest import mock
 from django.test import SimpleTestCase, RequestFactory
 from django.conf import settings
 
-from app.views import IndexView, SecretKeysView
+from app.views import IndexView, SecretKeyView
 
 
 class TestIndexView(SimpleTestCase):
@@ -36,24 +36,23 @@ class TestIndexView(SimpleTestCase):
 
 
 class TestSecretKeysView(SimpleTestCase):
-    def test_that_it_returns_json_list_on_post(self):
+    def test_that_it_returns_secret_key_in_response(self):
         request = RequestFactory().post('/')
 
-        response = SecretKeysView().list(request)
+        response = SecretKeyView().list(request)
 
-        self.assertIsInstance(response.data, list)
+        self.assertIn('secret_key', response.data)
 
-    def test_that_it_returns_twenty_items_on_post(self):
+    def test_that_it_returns_a_secret_key_with_fifty_characters(self):
         request = RequestFactory().post('/')
 
-        response = SecretKeysView().list(request)
+        response = SecretKeyView().list(request)
 
-        self.assertEqual(len(response.data), 20)
+        self.assertEqual(len(response.data['secret_key']), 50)
 
-    def test_that_it_returns_json_list_of_strings_on_post(self):
+    def test_that_it_returns_a_secret_key_as_string(self):
         request = RequestFactory().post('/')
 
-        response = SecretKeysView().list(request)
+        response = SecretKeyView().list(request)
 
-        for secret_key in response.data:
-            self.assertIsInstance(secret_key, str)
+        self.assertIsInstance(response.data['secret_key'], str)
