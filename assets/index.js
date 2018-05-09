@@ -1,57 +1,54 @@
 'use strict';
 
-window.generateSecretKeys = (function () {
+window.generateSecretKey = (function () {
   return function _generateSecretKeys() {
     _getSecretKeysRequest(_listener);
   };
 
   function _listener() {
-    var _secretKeysDiv = document.querySelector('.secret-keys');
-    var _inputs = _secretKeysDiv.children;
-
-    var object = {
-      secretKeysDiv: _secretKeysDiv,
-      inputs: _inputs,
-    };
+    var _secretKeyWrapper = document.querySelector('.secret-key');
 
     if (this.status === 200) {
-      var secretKeys = JSON.parse(this.responseText);
-
-      if (_inputs.length === 0) {
-        _addInputs.call(object, secretKeys);
-      } else {
-        _replaceInputs.call(object, secretKeys);
-      }
+      /**
+       * @type {{secretKey}}
+       */
+      var camelCaseResponse = _objectAttrsToCamelCase(JSON.parse(this.responseText));
+      _secretKeyWrapper.querySelector('input').value = '\'' + camelCaseResponse.secretKey + '\'';
     }
   }
 
   function _getSecretKeysRequest(listener) {
     var xhr = new XMLHttpRequest();
     xhr.onload = listener;
-    xhr.open('get', '/api/secret_keys/', true);
+    xhr.open('get', '/api/secret_key/', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send();
   }
 
-  function _getInputElement(value) {
-    var input = document.createElement('input');
-    input.value = value;
-    input.size = 60;
-    input.style.setProperty('text-align', 'center');
-    return input
-  }
+  function _objectAttrsToCamelCase(object) {
+    var _object = {};
 
-  function _addInputs(list) {
-    for (var i = 0; i < list.length; i++) {
-      var input = _getInputElement(list[i]);
-      this.secretKeysDiv.appendChild(input);
+    for (var key in object) {
+      if (object.hasOwnProperty(key)) {
+        var camelCaseKey = key.replace(/_([a-z])/g, _innerToUpperCase);
+        _object[camelCaseKey] = object[key];
+      }
     }
+
+    return _object;
   }
 
-  function _replaceInputs(list) {
-    for (var i = 0; i < list.length; i++) {
-      var input = _getInputElement(list[i]);
-      this.secretKeysDiv.replaceChild(input, this.inputs[i]);
+  function _innerToUpperCase(_, char) {
+    return char.toUpperCase();
+  }
+})();
+
+window.copySecretKey = (function () {
+  return function _copySecretKey() {
+    var input = document.querySelector('.secret-key input');
+    input.select();
+    if (document.queryCommandSupported('copy')) {
+      document.execCommand('copy');
     }
   }
 })();

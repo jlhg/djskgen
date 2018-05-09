@@ -18,9 +18,9 @@ class IndexView(TemplateView):
         return context
 
 
-class SecretKeysView(GenericViewSet, mixins.ListModelMixin):
+class SecretKeyView(GenericViewSet, mixins.ListModelMixin):
     def get_queryset(self):
         pass  # pragma: no cover
 
     def list(self, request, *args, **kwargs):
-        return Response([generate_secret_key() for _ in range(20)])
+        return Response({'secret_key': generate_secret_key()})
