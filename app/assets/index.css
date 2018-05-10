@@ -9,7 +9,12 @@ body {
 }
 
 .secret-key {
+  display: flex;
   margin-top: 1em;
+  min-height: 6em;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .secret-key input {
@@ -20,6 +25,7 @@ body {
   border-radius: 1em;
   text-align: center;
   border: 1px solid gray;
+  font-family: Courier, sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -27,6 +33,7 @@ body {
   height: 2em;
   font-size: 12pt;
   cursor: pointer;
+  padding: 0 1em;
   text-align: center;
   border-radius: 1em;
   border: 1px solid gray;

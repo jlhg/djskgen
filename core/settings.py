@@ -1,12 +1,12 @@
 import os
 import sys
 
-from core.helpers import DotEnvReader, set_secret_key_env
+from core.utils import EnvHelper
 
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DOT_ENV_PATH = os.path.join(PROJECT_ROOT, '.env')
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-DotEnvReader(DOT_ENV_PATH).read()
+env_helper = EnvHelper(env_file=os.path.join(BASE_DIR, '.env'))
+env_helper.read_env_file()
 
 TEST = 'test' in sys.argv
 
@@ -17,7 +17,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # If in production and SECRET_KEY is not set, let it fail
 if not SECRET_KEY and PRODUCTION:
-    set_secret_key_env(DOT_ENV_PATH)  # pragma: no cover
+    env_helper.set_secret_key()  # pragma: no cover
 
 DJANGO_APPS = [
     'django.contrib.auth',
@@ -46,11 +46,13 @@ USE_L10N = True
 USE_TZ = False
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_ROOT, 'assets'),
+    os.path.join(BASE_DIR, 'app', 'assets'),
 ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+if not TEST:  # pragma: no cover
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
@@ -70,7 +72,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(PROJECT_ROOT, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'app', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {},
     },
