@@ -1,12 +1,12 @@
 import os
 import sys
 
-from core.utils import DotEnvReader, set_secret_key_env
+from core.utils import EnvHelper
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DOT_ENV_PATH = os.path.join(BASE_DIR, '.env')
 
-DotEnvReader(DOT_ENV_PATH).read()
+env_helper = EnvHelper(env_file=os.path.join(BASE_DIR, '.env'))
+env_helper.read_env_file()
 
 TEST = 'test' in sys.argv
 
@@ -17,7 +17,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # If in production and SECRET_KEY is not set, let it fail
 if not SECRET_KEY and PRODUCTION:
-    set_secret_key_env(DOT_ENV_PATH)  # pragma: no cover
+    env_helper.set_secret_key()  # pragma: no cover
 
 DJANGO_APPS = [
     'django.contrib.auth',
