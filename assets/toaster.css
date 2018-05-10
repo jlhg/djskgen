@@ -1,0 +1,64 @@
+/* https://www.w3schools.com/howto/howto_js_snackbar.asp */
+.toaster {
+  left: 50%;
+  z-index: 1;
+  color: #fff;
+  bottom: 30px;
+  padding: 16px;
+  position: fixed;
+  min-width: 250px;
+  visibility: hidden;
+  text-align: center;
+  border-radius: 2px;
+  margin-left: -125px;
+  background-color: #333;
+}
+
+.toaster.show {
+  visibility: visible;
+  animation: fadeIn .5s, fadeOut .5s 2.5s;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}

@@ -6,11 +6,13 @@
 <head>
   <title>Django secret key generator</title>
   <link href="/static/index.css" rel="stylesheet">
+  <link href="/static/toaster.css" rel="stylesheet">
   <link href="/static/githubCorners.css" rel="stylesheet">
   {% if GOOGLE_ANALYTICS_ID %}
     <script src="/static/googleAnalytics.js?id={{ GOOGLE_ANALYTICS_ID }}"></script>
   {% endif %}
   <script src="/static/index.js"></script>
+  <script src="/static/toaster.js"></script>
 </head>
 <body onload="generateSecretKey()">
 
@@ -19,9 +21,11 @@
 <input type="button" onclick="generateSecretKey()" value="Get a new one">
 
 <label class="secret-key">
-  <input size="60">
+  <input size="60" onclick="copySecretKey()">
   <button onclick="copySecretKey()">Copy</button>
 </label>
+
+<div class="toaster"></div>
 
 <a target="_blank" href="https://github.com/jlhg/djskgen" class="github-corner" aria-label="View source on Github">
   <svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true">
