@@ -3,8 +3,8 @@ import sys
 
 from core.helpers import DotEnvReader, set_secret_key_env
 
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DOT_ENV_PATH = os.path.join(PROJECT_ROOT, '.env')
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DOT_ENV_PATH = os.path.join(BASE_DIR, '.env')
 
 DotEnvReader(DOT_ENV_PATH).read()
 
@@ -46,9 +46,9 @@ USE_L10N = True
 USE_TZ = False
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_ROOT, 'app', 'assets'),
+    os.path.join(BASE_DIR, 'app', 'assets'),
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -70,7 +70,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(PROJECT_ROOT, 'app', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'app', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {},
     },
