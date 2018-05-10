@@ -49,6 +49,7 @@ window.copySecretKey = (function () {
     input.select();
     if (document.queryCommandSupported('copy')) {
       document.execCommand('copy');
+      window.showToaster('Secret key copied to your clipboard!');
     }
   }
 })();
