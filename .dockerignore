@@ -1,0 +1,24 @@
+# Files
+app.yaml
+compose.sh
+.coveragerc
+Dockerfile
+Dockerfile.dev
+.dockerignore
+docker-compose.yml
+docker-compose.dev.yml
+.editorconfig
+.env
+.env.example
+.gitignore
+Procfile
+README.md
+runtime.txt
+.travis.yml
+
+# Directories
+.git/
+.idea/
+media/
+static/
+[v]env/
