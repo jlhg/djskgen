@@ -1,7 +1,7 @@
 import os
 import sys
 
-from core.helpers import DotEnvReader, set_secret_key_env
+from core.utils import DotEnvReader, set_secret_key_env
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOT_ENV_PATH = os.path.join(BASE_DIR, '.env')

@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, mixins
 
-from core.helpers import generate_secret_key
+from core.utils import generate_secret_key
 
 
 class IndexView(TemplateView):
