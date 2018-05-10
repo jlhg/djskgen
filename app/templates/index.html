@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 
-{% load staticfiles %}
+{% load static %}
 
 <head>
   <title>Django secret key generator</title>
-  <link href="/static/index.css" rel="stylesheet">
-  <link href="/static/toaster.css" rel="stylesheet">
-  <link href="/static/githubCorners.css" rel="stylesheet">
+  <link href="{% static 'index.css' %}" rel="stylesheet">
+  <link href="{% static 'toaster.css' %}" rel="stylesheet">
+  <link href="{% static 'githubCorners.css' %}" rel="stylesheet">
   {% if GOOGLE_ANALYTICS_ID %}
-    <script src="/static/googleAnalytics.js?id={{ GOOGLE_ANALYTICS_ID }}"></script>
+    <script src="{% static 'googleAnalytics.js' %}?id={{ GOOGLE_ANALYTICS_ID }}"></script>
   {% endif %}
-  <script src="/static/index.js"></script>
-  <script src="/static/toaster.js"></script>
+  <script src="{% static 'index.js' %}"></script>
+  <script src="{% static 'toaster.js' %}"></script>
 </head>
 <body onload="generateSecretKey()">
 

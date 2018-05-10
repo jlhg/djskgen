@@ -48,7 +48,7 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_ROOT, 'assets'),
+    os.path.join(PROJECT_ROOT, 'app', 'assets'),
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -70,7 +70,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(PROJECT_ROOT, 'templates')],
+        'DIRS': [os.path.join(PROJECT_ROOT, 'app', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {},
     },
