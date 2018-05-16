@@ -25,7 +25,7 @@ window.gtag = (function () {
     var scripts = document.getElementsByTagName('script');
 
     for (var i = 0; i < scripts.length; i++) {
-      var regexp = new RegExp('/' + script_name + '.js');
+      var regexp = new RegExp('/' + script_name + '(\\.[a-zA-Z0-9]{12})?\\.js');
       var src = scripts[i].src;
 
       if (regexp.test(src)) {
