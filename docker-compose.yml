@@ -5,6 +5,7 @@ services:
   server:
     container_name: djskgen_server
     build: .
+    command: gunicorn -b 0.0.0.0 core.wsgi --log-file -
     env_file:
       - .env
     environment:

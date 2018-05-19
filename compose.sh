@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-if [ "${1}" == "dev" ]; then
+if [ "${1}" == 'dev' ]; then
   shift
-  docker-compose -f docker-compose.dev.yml ${@}
+  docker-compose -f docker-compose.yml -f docker-compose.dev.yml ${@}
 else
   docker-compose ${@}
 fi

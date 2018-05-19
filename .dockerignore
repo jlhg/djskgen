@@ -3,7 +3,6 @@ app.yaml
 compose.sh
 .coveragerc
 Dockerfile
-Dockerfile.dev
 .dockerignore
 docker-compose.yml
 docker-compose.dev.yml
