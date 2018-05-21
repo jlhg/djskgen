@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+
+  server:
+    container_name: djskgen_server
+    build: .
+    command: gunicorn -b 0.0.0.0 core.wsgi --log-file -
+    env_file:
+      - .env
+    environment:
+      - PRODUCTION=1
+      # ALLOWED_HOSTS=* # Must set the allowed host(s) in the production environment through ".env" file
+    ports:
+      - "8000:8000"

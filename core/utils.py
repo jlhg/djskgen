@@ -26,7 +26,7 @@ class EnvHelper:
                 if match:
                     os.environ.setdefault(*match.groupdict().values())
 
-    def set_secret_key(self) -> None:
+    def set_secret_key(self) -> None:  # pragma: no cover
         secret_key = generate_secret_key()
         os.environ.setdefault('SECRET_KEY', secret_key)
 

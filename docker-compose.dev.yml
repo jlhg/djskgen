@@ -1,0 +1,13 @@
+version: "3"
+
+# Do not use this config file alone
+# Instead, do "./compose.sh dev [compose commands]"
+
+services:
+
+  server:
+    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      - PRODUCTION=0
+    volumes:
+      - .:/app
