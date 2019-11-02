@@ -1,4 +1,4 @@
-FROM python:3.6.5
+FROM python:3.6.9
 LABEL maintainer="Jourdan Rodrigues <thiagojourdan@gmail.com>"
 
 WORKDIR /app/
